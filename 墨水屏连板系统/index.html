@@ -32,7 +32,7 @@
             background-color: #fff;
             margin: auto;
             margin-top: 40px;
-            
+
         }
 
         .header {
@@ -113,7 +113,7 @@
             border-radius: 10px;
             outline: none;
         }
-        
+
         .btn {
             width: 60px;
             height: 25px;
@@ -230,6 +230,9 @@
 
         const con = document.getElementById("con")
 
+        const sum = document.getElementById("sum")
+
+
         width.onblur = function () {
             con.style.width = `${width.value}px`
         }
@@ -272,7 +275,7 @@
             u1.style.backgroundColor = `${bgccolor.value}`
             u2.style.backgroundColor = `${bgccolor.value}`
             u3.style.backgroundColor = `${bgccolor.value}`
-            if(bgccolor.value == "#000") {
+            if (bgccolor.value == "#000") {
                 main.style.borderTop = "4px solid #fff"
                 footer.style.borderTop = "4px solid #fff"
             }
@@ -280,24 +283,26 @@
                 main.style.borderTop = "4px solid #000"
                 footer.style.borderTop = "4px solid #000"
             }
-            
+
         }
 
-        b1.onclick = function() {
+        b1.onclick = function () {
             header.style.display = "block"
             main.style.display = "block"
             footer.style.display = "block"
         }
-        b2.onclick = function() {
+        b2.onclick = function () {
             header.style.display = "block"
             main.style.display = "block"
             footer.style.display = "none"
         }
-        b3.onclick = function() {
+        b3.onclick = function () {
             header.style.display = "block"
             main.style.display = "none"
             footer.style.display = "none"
         }
+
+        
 
     </script>
 </body>
