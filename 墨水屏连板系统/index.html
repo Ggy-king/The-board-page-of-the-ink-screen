@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>墨水屏系统</title>
     <style>
         * {
             padding: 0;
@@ -187,18 +187,21 @@
     </div>
 
     <div class="container" id="con">
-        <div class="header" id="header">
-            <input id="u1" type="text" placeholder="请输入">
-        </div>
-        <div class="main" id="main">
-            <input id="u2" type="text" placeholder="请输入">
-        </div>
-        <div class="footer" id="footer">
-            <input id="u3" type="text" placeholder="请输入">
+        <div class="submit" id="submit">
+            <div class="header" id="header">
+                <input id="u1" type="text" placeholder="请输入">
+            </div>
+            <div class="main" id="main">
+                <input id="u2" type="text" placeholder="请输入">
+            </div>
+            <div class="footer" id="footer">
+                <input id="u3" type="text" placeholder="请输入">
+            </div>
         </div>
     </div>
 
-    <button id="sum">提交</button>
+    <button id="sum" title="保存为图片" onclick="saveCanvas()">保存图片</button>
+    <a href="" download="下载图.jpg" id="download"></a>
 
     <script>
         const width = document.getElementById("width")
@@ -302,9 +305,24 @@
             footer.style.display = "none"
         }
 
-        
+
 
     </script>
 </body>
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+
+<script src="https://blog-static.cnblogs.com/files/xieyongbin/html2canvas.min.js"></script>
+<script>
+    function saveCanvas() {
+        html2canvas($(".submit")).then(function (canvas) {
+            var imgUri = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
+            $("#download").attr("href", imgUri);
+            console.log(imgUri);
+            document.getElementById("download").click();
+        });
+    }
+</script>
 
 </html>
