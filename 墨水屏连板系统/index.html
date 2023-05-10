@@ -39,7 +39,7 @@
             text-align: center;
             width: 100%;
             height: 150px;
-            line-height: 146px;
+            line-height: 150px;
         }
 
         .main {
@@ -54,28 +54,38 @@
         .footer {
             text-align: center;
             height: 96px;
-            line-height: 100px;
+            line-height: 96px;
             border-top: 4px solid black;
         }
 
-        input {
+        input,
+        .in {
             width: 100%;
             height: 100%;
             border: none;
             outline: none;
             text-align: center;
+            font-family: "微软雅黑", "黑体", "宋体";
         }
 
-        #u1 {
-            font-size: 110px;
-        }
-
-        #u2 {
+        #u1,
+        #u11 {
             font-size: 100px;
+            line-height: 146px;
         }
 
-        #u3 {
+        #u2,
+        #u22 {
+            font-size: 100px;
+            line-height: 226px;
+
+        }
+
+        #u3,
+        #u33 {
             font-size: 45px;
+            line-height: 96px;
+
         }
 
         .side {
@@ -107,11 +117,28 @@
             right: 40px;
             bottom: 60px;
             height: 40px;
-            width: 60px;
+            width: 100px;
             font-size: 14px;
             font-weight: 700;
             border-radius: 10px;
             outline: none;
+            background-color: #1677ff;
+            color: #fff;
+        }
+
+        #sum1 {
+            position: absolute;
+            right: 150px;
+            bottom: 60px;
+            height: 40px;
+            width: 70px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 10px;
+            outline: none;
+            background-color: #1677ff;
+            color: #fff;
+
         }
 
         .btn {
@@ -124,6 +151,10 @@
             outline: none;
             border-radius: 10px;
 
+        }
+
+        .u {
+            display: none;
         }
     </style>
 </head>
@@ -190,17 +221,21 @@
         <div class="submit" id="submit">
             <div class="header" id="header">
                 <input id="u1" type="text" placeholder="请输入">
+                <div id="u11" class="u in"></div>
             </div>
             <div class="main" id="main">
                 <input id="u2" type="text" placeholder="请输入">
+                <div id="u22" class="u in"></div>
             </div>
             <div class="footer" id="footer">
                 <input id="u3" type="text" placeholder="请输入">
+                <div id="u33" class="u in"></div>
             </div>
         </div>
     </div>
 
-    <button id="sum" title="保存为图片" onclick="saveCanvas()">保存图片</button>
+    <button id="sum1" title="保存或重来">确定/重来</button>
+    <button id="sum" title="保存为图片" onclick="saveCanvas()">保存图片(请确定在保存)</button>
     <a href="" download="下载图.jpg" id="download"></a>
 
     <script>
@@ -222,6 +257,9 @@
         const u1 = document.getElementById("u1")
         const u2 = document.getElementById("u2")
         const u3 = document.getElementById("u3")
+        const u11 = document.querySelector("#u11")
+        const u22 = document.querySelector("#u22")
+        const u33 = document.querySelector("#u33")
 
         const header = document.getElementById("header")
         const main = document.getElementById("main")
@@ -234,6 +272,7 @@
         const con = document.getElementById("con")
 
         const sum = document.getElementById("sum")
+        const sum1 = document.getElementById("sum1")
 
 
         width.onblur = function () {
@@ -242,42 +281,57 @@
 
         fontsize1.onblur = function () {
             u1.style.fontSize = `${fontsize1.value}px`
+            u11.style.fontSize = `${fontsize1.value}px`
         }
         fontsize2.onblur = function () {
             u2.style.fontSize = `${fontsize2.value}px`
+            u22.style.fontSize = `${fontsize2.value}px`
         }
         fontsize3.onblur = function () {
             u3.style.fontSize = `${fontsize3.value}px`
+            u33.style.fontSize = `${fontsize3.value}px`
         }
         fontweight1.onblur = function () {
             u1.style.fontWeight = `${fontweight1.value}`
+            u11.style.fontWeight = `${fontweight1.value}`
         }
         fontweight2.onblur = function () {
             u2.style.fontWeight = `${fontweight2.value}`
+            u22.style.fontWeight = `${fontweight2.value}`
         }
         fontweight3.onblur = function () {
             u3.style.fontWeight = `${fontweight3.value}`
+            u33.style.fontWeight = `${fontweight3.value}`
         }
 
 
         fontcolor.onblur = function () {
             u1.style.color = `${fontcolor.value}`
+            u11.style.color = `${fontcolor.value}`
             u2.style.color = `${fontcolor.value}`
+            u22.style.color = `${fontcolor.value}`
             u3.style.color = `${fontcolor.value}`
+            u33.style.color = `${fontcolor.value}`
         }
         headheight.onblur = function () {
             header.style.height = `${headheight.value}px`
+            u11.style.lineHeight = `${headheight.value}px`
         }
         mainheight.onblur = function () {
             main.style.height = `${mainheight.value}px`
+            u22.style.height = `${mainheight.value}px`
         }
         footerheight.onblur = function () {
             footer.style.height = `${footerheight.value}px`
+            u33.style.height = `${footerheight.value}px`
         }
         bgccolor.onblur = function () {
             u1.style.backgroundColor = `${bgccolor.value}`
+            u11.style.backgroundColor = `${bgccolor.value}`
             u2.style.backgroundColor = `${bgccolor.value}`
+            u22.style.backgroundColor = `${bgccolor.value}`
             u3.style.backgroundColor = `${bgccolor.value}`
+            u33.style.backgroundColor = `${bgccolor.value}`
             if (bgccolor.value == "#000") {
                 main.style.borderTop = "4px solid #fff"
                 footer.style.borderTop = "4px solid #fff"
@@ -306,23 +360,47 @@
         }
 
 
+        sum1.onclick = function () {
+            if (u1.style.display == "none") {
+                u1.style.display = "block"
+                u2.style.display = "block"
+                u3.style.display = "block"
+                u11.style.display = "none"
+                u22.style.display = "none"
+                u33.style.display = "none"
+            } else {
+                u11.textContent = u1.value
+                u22.textContent = u2.value
+                u33.textContent = u3.value
+                u1.style.display = "none"
+                u2.style.display = "none"
+                u3.style.display = "none"
+                u11.style.display = "inline-block"
+                u22.style.display = "inline-block"
+                u33.style.display = "inline-block"
+            }
+        }
 
+
+
+
+    </script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+
+    <script src="https://blog-static.cnblogs.com/files/xieyongbin/html2canvas.min.js"></script>
+    <script>
+        function saveCanvas() {
+            html2canvas($(".submit")).then(function (canvas) {
+                var imgUri = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
+                $("#download").attr("href", imgUri);
+                console.log(imgUri);
+                document.getElementById("download").click();
+            });
+        }
     </script>
 </body>
 
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-
-<script src="https://blog-static.cnblogs.com/files/xieyongbin/html2canvas.min.js"></script>
-<script>
-    function saveCanvas() {
-        html2canvas($(".submit")).then(function (canvas) {
-            var imgUri = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
-            $("#download").attr("href", imgUri);
-            console.log(imgUri);
-            document.getElementById("download").click();
-        });
-    }
-</script>
 
 </html>
